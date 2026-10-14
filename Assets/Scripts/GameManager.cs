@@ -29,17 +29,32 @@ public class GameManager : MonoBehaviour
 	Vector2 endPoint;
 	Vector2 direction;
 	Vector2 force;
+	Vector3 ballStartPosition;
 	float distance;
 
 	//---------------------------------------
 	void Start ()
 	{
+		ballStartPosition = ball.transform.position;
 		cam = Camera.main;
 		ball.DesactivateRb ();
 	}
 
 	void Update ()
 	{
+		
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			isDragging = false;
+			force = Vector2.zero;
+
+			ball.DesactivateRb();
+			ball.transform.position = ballStartPosition;
+			ball.transform.rotation = Quaternion.identity;
+
+			trajectory.Hide();
+		}
+		
 		if (Input.GetMouseButtonDown (0)) {
 			isDragging = true;
 			OnDragStart ();
