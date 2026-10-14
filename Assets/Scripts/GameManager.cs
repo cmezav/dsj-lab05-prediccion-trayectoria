@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
 	public Ball ball;
 	public Trajectory trajectory;
+	public ScoreManager scoreManager;
 	[SerializeField] float pushForce = 4f;
 
 	bool isDragging = false;
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
 	{
 		//push the ball
 		ball.ActivateRb ();
-
+		scoreManager.BeginShot();
 		ball.Push (force);
 
 		trajectory.Hide ();
